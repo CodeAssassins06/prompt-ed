@@ -9,7 +9,7 @@ import { Mail, Home, Users, Star, Tag, User, HelpCircle, LogIn, ChevronRight, Ch
 function SideNavbar() {
     return (
         <>
-            <div className="flex    shadow-sm " style={{ height: "calc(100vh - 92px)" }}>
+            <div className="flex shadow-sm sticky top-[92px]" style={{ height: "calc(100vh - 92px)" }}>
                 <aside className=" sm:p-4 p-3 w-64  flex flex-col justify-between shadow-sm" style={{ backgroundColor: `var(--Header-color)` }}>
                     <div className="flex flex-col  gap-2 overflow-y-auto ">
                         <Button variant="blue" className="flex w-full font-bold  sm:justify-start justify-center p-[24px]">

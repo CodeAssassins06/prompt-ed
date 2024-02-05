@@ -5,9 +5,8 @@ import Sidebar from "@/components/sidebar/Sidebar";
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <div className="w-1/6">
-        <Sidebar />
+      <div className="h-[1000px]">
+        ssad
       </div>
     </>
   );

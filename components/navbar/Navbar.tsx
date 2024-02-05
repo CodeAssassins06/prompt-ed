@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className=" shadow-sm  "
+      className=" shadow-sm sticky top-0"
       style={{ backgroundColor: `var(--Header-color)` }}
     >
       <div className="container mx-auto flex justify-between items-center  sm:w-11/12 p-6">
@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
             </div>
           </div>
           {!searchVisible && <ModeToggle />}
-          
+
         </div>
       </div>
     </nav>
