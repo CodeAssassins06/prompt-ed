@@ -1,0 +1,28 @@
+@import "mixins.scss";
+
+.search-input-header {
+  width: 180px;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  animation: mobileSearchFade 0.3s ease-in-out forwards;
+  // display: none;
+  @include lg {
+    width: 400px;
+    display: block;
+  }
+}
+
+.search-input-header:focus {
+  outline: 0;
+  border: 0;
+}
+
+.search-input-header-div {
+  border-radius: 30px;
+  padding: 10px 10px;
+  // box-shadow: 0 1px 3px rgba(23, 23, 23, 0.24);
+  @include lg {
+    padding: 10px 16px;
+  }
+}
