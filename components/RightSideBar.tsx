@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import {
   FaJava,
@@ -23,13 +24,15 @@ export default function RightSideBar() {
     <>
       <div className="sticky top-[92px] flex flex-col p-4 shadow-lg" style={{ height: "calc(100vh - 92px)" }}>
         {data.map((item) => (
-          <Button key={item.text} variant={`${item.isActive ? "blue" : "ghost"}`} className="m-2 flex w-full  justify-center p-[24px] font-bold sm:justify-start">
+          <Button key={item.text} variant={`${item.isActive ? "blue" : "ghost"}`} className="m-2 flex w-full  justify-between py-[24px] font-bold">
+            <div className="flex items-center">
 
-            {item.icon}
-            <div className="px-4 text-lg font-semibold">
-              {item.text}
+              {item.icon}
+              <div className="px-4 text-lg font-semibold">
+                {item.text}
+              </div>
             </div>
-            <MdKeyboardArrowRight className="size-[24px]" />
+            <MdKeyboardArrowRight className="size-[24px] items-end" />
           </Button>
         ))}
       </div>
