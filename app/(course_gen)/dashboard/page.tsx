@@ -40,8 +40,8 @@ export default function Home() {
     <>
       {
         isGenerated && !isGenerating ? (
-          <div className="flex">
-            <div className="flex w-full flex-col gap-5">
+          <div className="relative flex">
+            <div className="flex w-full flex-col gap-5 p-5">
               <section className="flex flex-col gap-2">
                 <h1 className="py-2 text-center text-[28px] font-bold capitalize">
                   {tutorial.title}
@@ -135,8 +135,28 @@ export default function Home() {
                   </Button>
                 </form>
               }
+              <section>
+                {tutorialDetail.sources?.length > 0 &&
+                  <h1 className="h2-bold text-left">Sources</h1>
+                }
+                <ul className="my-3 list-disc pl-6 leading-loose">
+                  {tutorialDetail.sources.map((source: any) => {
+                    return (
+                      <li className="list-item" key={source}>
+                        <a href={source} target="_blank" className="text-blue-800 hover:underline">
+                          {source}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
             </div>
-            <RightSideBar setIsCheck={setIsCheck} activeId={activeTutId} setActiveTutId={setActiveTutId} title={tutorials.input} learningPath={tutorials.tutorials} />
+
+            <div className="" >
+
+              <RightSideBar setIsCheck={setIsCheck} activeId={activeTutId} setActiveTutId={setActiveTutId} title={tutorials.input} learningPath={tutorials.tutorials} />
+            </div>
           </div>
         ) : (
           <div className="flex h-full flex-col items-center justify-center">

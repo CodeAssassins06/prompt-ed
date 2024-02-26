@@ -23,7 +23,7 @@ export default function RootLayout({
         <Navbar />
         <div className="flex justify-between" style={{ height: "calc(100vh - 92px)" }}>
           <SideNavbar />
-          <div className="size-full overflow-auto p-4">
+          <div className="size-full h-full overflow-auto">
 
             {children}
           </div>
