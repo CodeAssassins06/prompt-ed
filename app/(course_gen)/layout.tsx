@@ -4,7 +4,6 @@ import React from 'react';
 // import '@/app/globals.css'
 import Navbar from '@/components/navbar/Navbar';
 import SideNavbar from '@/components/sidebar/Sidebar';
-import RightSideBar from '@/components/RightSideBar';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,7 +27,6 @@ export default function RootLayout({
 
             {children}
           </div>
-          <RightSideBar />
         </div>
       </body>
     </html>
