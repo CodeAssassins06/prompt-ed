@@ -38,8 +38,8 @@ const LandingNavbar = () => {
         } fixed top-0 z-20 flex w-full items-center py-5 ${scrolled ? "bg-primary" : "bg-transparent"
         }`}
     >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
-        <div className="hidden w-full list-none flex-row justify-end gap-10 sm:flex">
+      <div className="max-w-8xl mx-auto flex w-full items-center justify-between">
+        <div className="hidden w-full list-none flex-row justify-end gap-10 text-white sm:flex">
           <SignedOut>
             <SignUpButton mode="modal">Register</SignUpButton>
             <SignInButton mode="modal">Sign In</SignInButton>

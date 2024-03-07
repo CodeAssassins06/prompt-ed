@@ -4,7 +4,7 @@ import RightSideBar from "@/components/RightSideBar";
 /* eslint-disable no-unused-vars */
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import researchAgent from "@/lib/action/researchAgent";
+import researchAgent from "@/lib/actions/researchAgent";
 import { useState } from "react";
 
 export default function Home() {

@@ -9,6 +9,7 @@ import React, { useState, useRef } from "react";
 import { BiX } from "react-icons/bi";
 import { ModeToggle } from "../theme/Toggle";
 import { Search, X } from 'lucide-react';
+import { SignedIn, UserButton } from "@clerk/nextjs";
 const Navbar: React.FC = () => {
   const [query, setquery] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,7 +45,7 @@ const Navbar: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex  lg:justify-between justify-end lg:gap-0 gap-2 w-2/3   ">
+        <div className="flex  lg:justify-between items-center justify-end lg:gap-0 gap-2 w-2/3   ">
           <div
             className="md:flex hidden items-center search-input-header-div  "
             style={{ backgroundColor: `var(--Input-color)` }}
@@ -107,8 +108,14 @@ const Navbar: React.FC = () => {
               )}
             </div>
           </div>
-          {!searchVisible && <ModeToggle />}
+          <div className="flex items-center gap-4">
 
+            {!searchVisible && <ModeToggle />}
+
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
+          </div>
         </div>
       </div>
     </nav>

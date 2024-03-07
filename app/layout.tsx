@@ -18,7 +18,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider publishableKey={process.env.CLERK_PUBLISHABLE_KEY}>
+    <ClerkProvider publishableKey={process.env.CLERK_PUBLISHABLE_KEY} afterSignInUrl="/dashboard"
+      afterSignUpUrl="/dashboard">
 
       <html lang="en">
         <body className={`${inter.className} h-screen`}>
