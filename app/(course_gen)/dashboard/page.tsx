@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import researchAgent from "@/lib/action/researchAgent";
 import { useState } from "react";
+
 export default function Home() {
   const [tutorials, setTutorials] = useState<any>(undefined);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -90,6 +91,7 @@ export default function Home() {
                 <ParseHtml
                   data={`<pre class="language-${tutorialDetail.exampleCode.code.languageName.toLowerCase()}"> <code>${formattedCode}</code></pre>`}
                 />
+
                 <p className="">{tutorialDetail.exampleCode.afterCodeExplanation}</p>
               </section>
               {

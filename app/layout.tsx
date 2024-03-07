@@ -4,6 +4,7 @@ import React from 'react';
 import './globals.css';
 import "@/styles/prism.css"
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { ClerkProvider } from '@clerk/nextjs';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -17,18 +18,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} h-screen`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider publishableKey={process.env.CLERK_PUBLISHABLE_KEY}>
+
+      <html lang="en">
+        <body className={`${inter.className} h-screen`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
 
