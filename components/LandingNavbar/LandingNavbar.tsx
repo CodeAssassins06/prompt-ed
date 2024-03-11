@@ -11,6 +11,8 @@ import {
 import Image from "next/image";
 import { styles } from "../styles/styles";
 import { navLinks } from "@/constants";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 const LandingNavbar = () => {
   const [active, setActive] = useState("");
@@ -45,6 +47,11 @@ const LandingNavbar = () => {
             <SignInButton mode="modal">Sign In</SignInButton>
           </SignedOut>
           <SignedIn>
+            <Link href="/dashboard">
+              <Button variant="blue" className="flex w-fit justify-center  px-4 py-2 font-bold sm:justify-start">
+                Go to dashboard
+              </Button>
+            </Link>
             <UserButton afterSignOutUrl="/" />
           </SignedIn>
         </div>

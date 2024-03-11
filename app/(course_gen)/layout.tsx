@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import React from 'react';
 // import '@/app/globals.css'
 import Navbar from '@/components/navbar/Navbar';
-import SideNavbar from '@/components/sidebar/Sidebar';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,7 +21,6 @@ export default function RootLayout({
       <body className={`${inter.className} h-screen`}>
         <Navbar />
         <div className="flex justify-between" style={{ height: "calc(100vh - 92px)" }}>
-          <SideNavbar />
           <div className="size-full h-full overflow-auto">
 
             {children}

@@ -1,13 +1,10 @@
 "use server";
 import fs from "fs";
 import { AgentExecutor } from "langchain/agents";
-import {
-  ChatPromptTemplate,
-  MessagesPlaceholder,
-} from "@langchain/core/prompts";
 
-import { getRunnableAgent, getSearchTool } from "./tools";
-import { responseSchema } from "./schemas";
+import { getRunnableAgent, getSearchTool } from "../tools";
+import { tutorialSchema, roadMapSchema } from "../schemas";
+import { roadMapPrompt, tutorialPrompt } from "../prompts";
 interface Props {
   topic: string;
   openAiKey?: string;
@@ -15,25 +12,17 @@ interface Props {
   modelName?: string;
 }
 
-const researchAgent = async ({ topic }: Props) => {
+const getRoadmap = async ({ topic }: Props) => {
   try {
     const searchTool = getSearchTool();
-    const prompt = ChatPromptTemplate.fromMessages([
-      [
-        "system",
-        "You are a helpful assistant who will provide a a comprehensive learning roadmap for understanding {input}. Please list the key topics in a logical order with the title and detail as described in the response schema, starting from the foundations and progressing towards advanced concepts(you can take these topic as an example for a complete roadmap: ntroduction to Natural Language Processing (NLP), Deep Learning concepts: Neural Networks, Transformers, etc., LLM architectures: GPT-3, Jurassic-1 Jumbo, etc.,Training data and its impact on LLMs, Prompt engineering and its techniques, Evaluation metrics for LLMs: BLEU, ROUGE, etc., Bias and fairness in LLMs, Applications of LLMs: text generation, translation, etc.). Also consider to fetch a code froom internet that is somehow related to the topic and place it in the sample code section in response schema. which will contain different topic titles and its details as described in the response schema which u must follow. You must give me a complete list of topics in learning path instead of a single topic and it should be in the json format. You should give the response that synchronize all the schema items. You must always call one of the provided tools.",
-      ],
-      ["user", "{input}"],
-      new MessagesPlaceholder("agent_scratchpad"),
-    ]);
+
     // const runnableAgent=getRunnableAgent(modelName,openAiKey,tavilyKey,roadmapPrompt,roadMapSchema);
-    const runnableAgent = getRunnableAgent(prompt, responseSchema);
-    const executor = AgentExecutor.fromAgentAndTools({
-      agent: runnableAgent,
+    const runnableAgentRoadmap = getRunnableAgent(roadMapPrompt, roadMapSchema);
+    const executorRoadmap = AgentExecutor.fromAgentAndTools({
+      agent: runnableAgentRoadmap,
       tools: [searchTool],
     });
-    /** Call invoke on the agent */
-    const res = await executor.invoke({
+    const res = await executorRoadmap.invoke({
       input: topic,
     });
     console.log({
@@ -45,5 +34,29 @@ const researchAgent = async ({ topic }: Props) => {
     console.log(error);
   }
 };
+export const getTutorial = async ({ topic }: Props) => {
+  try {
+    const searchTool = getSearchTool();
 
-export default researchAgent;
+    // const runnableAgent=getRunnableAgent(modelName,openAiKey,tavilyKey,roadmapPrompt,roadMapSchema);
+    const runnableAgentRoadmap = getRunnableAgent(
+      tutorialPrompt,
+      tutorialSchema
+    );
+    const executorRoadmap = AgentExecutor.fromAgentAndTools({
+      agent: runnableAgentRoadmap,
+      tools: [searchTool],
+    });
+    const res = await executorRoadmap.invoke({
+      input: topic,
+    });
+    console.log({
+      res,
+    });
+    fs.writeFileSync("res.json", JSON.stringify(res));
+    return JSON.stringify(res);
+  } catch (error) {
+    console.log(error);
+  }
+};
+export default getRoadmap;
