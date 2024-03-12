@@ -1,155 +1,56 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable tailwindcss/no-custom-classname */
-/* eslint-disable tailwindcss/migration-from-tailwind-2 */
-/* eslint-disable tailwindcss/classnames-order */
+
 "use client";
 import "../../public/assets/styles/Navbar.scss";
-import React, { useState, useRef } from "react";
-import { BiX } from "react-icons/bi";
-import { ModeToggle } from "../theme/Toggle";
-import { Search, X } from 'lucide-react';
-import { SignedIn, UserButton } from "@clerk/nextjs";
+import React from "react";
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
+import Theme from "./Theme";
+import { usePathname } from "next/navigation";
 const Navbar: React.FC = () => {
-  const [query, setquery] = useState<string>("");
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [text, setText] = useState<string>("");
-
-  const searchQueryHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && query.length > 0) {
-      setText(event.currentTarget.value);
-      setquery("");
-      inputRef.current?.blur();
-    }
-  };
-
-  const [searchVisible, setSearchVisible] = useState<boolean>(false);
-  const handleSearchClick = () => {
-    setSearchVisible(!searchVisible);
-  };
-
+  const pathname = usePathname();
   return (
     <nav
-      className=" shadow-sm sticky top-0 px-8 py-4"
-      style={{ backgroundColor: `var(--Header-color)` }}
+      className="background-light900_dark200 text-dark200_light800 fixed top-0 z-10 flex w-full items-center justify-between gap-2 px-8 shadow-sm"
     >
-      <div className="flex items-center gap-2 justify-between">
-        <Link href="/">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/assets/images/command-outline-alerted-svgrepo-com (2).png"
-              alt="Next.js Icon"
-              width={40}
-              height={40}
-            />
-            <p className=" sm:flex hidden font-bold text-xl ">
-              <span className="text-[#205ce9]">Prompt</span>ed
-            </p>
-          </div>
+      <Link href="/">
+        <div className="flex items-center gap-2">
+          <Image
+            src="/assets/images/command-outline-alerted-svgrepo-com (2).png"
+            alt="Next.js Icon"
+            width={40}
+            height={40}
+          />
+          <p className=" hidden text-xl font-bold sm:flex ">
+            <span className="text-primary-500">Prompt</span>ed
+          </p>
+        </div>
+      </Link>
+      <div className="flex gap-4">
+        <Link href="/" className={`${pathname === "/" && "border-b-4 border-primary-500 bg-light-800 dark:bg-dark-300"} h3-bold px-2 py-4 hover:bg-light-800 dark:hover:bg-dark-300`}>
+          Home
         </Link>
-        <div className="flex gap-2">
-          <Link href="/dashboard">
-            Dashboard
-          </Link>
-          <Link href="/tutorials">
-            Tutorials
-          </Link>
-        </div>
-        <div className="flex items-center gap-4">
-          <ModeToggle />
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
-        </div>
+        <SignedIn>
+          <div className="flex gap-4">
+            <Link href="/dashboard" className={`h3-bold ${pathname === "/dashboard" && "border-b-4 border-primary-500  bg-light-800 dark:bg-dark-300"} px-2 py-4 hover:bg-light-800 dark:hover:bg-dark-300`}>
+              Dashboard
+            </Link>
+            <Link href="/tutorials" className={`h3-bold ${pathname === "/tutorials" && "border-b-4 border-primary-500  bg-light-800 dark:bg-dark-300"} px-2 py-4 hover:bg-light-800 dark:hover:bg-dark-300`}>
+              Tutorials
+            </Link>
+          </div>
+        </SignedIn>
       </div>
-      {/* <div className="container mx-auto flex justify-between items-center  sm:w-11/12 p-6">
-        <Link href="/">
-          <div className="flex items-center gap-2">
-            <img
-              src="/assets/images/command-outline-alerted-svgrepo-com (2).png"
-              alt="Next.js Icon"
-              width={40}
-            />
-            <p className=" sm:flex hidden font-bold text-xl ">
-              <span className="text-[#205ce9]">Prompt</span>ed
-            </p>
-          </div>
-        </Link>
-        <div className="flex  lg:justify-between items-center justify-end lg:gap-0 gap-2 w-2/3   ">
-          <div
-            className="md:flex hidden items-center search-input-header-div  "
-            style={{ backgroundColor: `var(--Input-color)` }}
-          >
-            <div>
-              <input
-                type="text"
-                placeholder="Search"
-                className="search-input-header px-3 font-medium"
-                value={query}
-                onChange={(event) => setquery(event.target.value)}
-                onKeyUp={searchQueryHandler}
-                ref={inputRef}
-              />
-            </div>
-            <div>
-              <Search
-                size={22}
-                style={{ strokeWidth: "2" }}
-                onClick={handleSearchClick}
-              />
-            </div>
-          </div>
-
-          <div className="md:hidden flex   items-center search-input-header-div h-[2.65rem]" style={{ backgroundColor: `var(--Input-color)` }}>
-            <div >
-              {searchVisible && (
-                <div>
-                  <input
-
-                    type="text"
-                    placeholder="Search"
-                    className="search-input-header px-3 font-medium"
-                    value={query}
-                    onChange={(event) => setquery(event.target.value)}
-                    onKeyUp={searchQueryHandler}
-                    ref={inputRef}
-                    autoFocus={true}
-                  />
-                </div>
-              )}
-            </div>
-            <div>
-              {searchVisible ? (
-                <X
-                  size={28}
-                  style={{ strokeWidth: "2" }}
-                  onClick={handleSearchClick}
-                />
-              ) : (
-                <div >
-                  <Search
-
-                    size={22}
-                    style={{ strokeWidth: "2" }}
-                    onClick={handleSearchClick}
-                  />
-                </div>
-
-              )}
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-
-            {!searchVisible && <ModeToggle />}
-
-            <SignedIn>
-              <UserButton afterSignOutUrl="/" />
-            </SignedIn>
-          </div>
-        </div>
-      </div> */}
+      <div className="flex items-center gap-4">
+        <Theme />
+        <SignedOut>
+          <SignUpButton mode="modal">Register</SignUpButton>
+          <SignInButton mode="modal">Sign In</SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton afterSignOutUrl="/" />
+        </SignedIn>
+      </div>
     </nav>
   );
 };

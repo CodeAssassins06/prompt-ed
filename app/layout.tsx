@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import React from 'react';
 import './globals.css';
-import "@/styles/prism.css"
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { ClerkProvider } from '@clerk/nextjs';
+import { ThemeProvider } from '@/context/ThemeProvider';
+import Navbar from '@/components/navbar/Navbar';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,22 +18,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider publishableKey={process.env.CLERK_PUBLISHABLE_KEY} afterSignInUrl="/dashboard"
-      afterSignUpUrl="/dashboard">
 
-      <html lang="en">
-        <body className={`${inter.className} h-screen`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
+    <html lang="en">
+      <body className={`${inter.className} h-screen`}>
+        <ClerkProvider publishableKey={process.env.CLERK_PUBLISHABLE_KEY} afterSignInUrl="/dashboard"
+          afterSignUpUrl="/dashboard">
+          <ThemeProvider>
+            <div className="relative left-0 top-0 h-screen">
+
+              <Navbar />
+              {children}
+            </div>
           </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
 
