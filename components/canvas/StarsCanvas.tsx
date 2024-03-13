@@ -10,7 +10,7 @@ const Stars = (props: any) => {
 
     useFrame((state: any, delta: any) => {
         ref.current.rotation.x -= delta / 10;
-        ref.current.rotation.y -= delta / 15;
+        ref.current.rotation.y! -= delta / 15;
     });
 
     return (
@@ -30,7 +30,7 @@ const Stars = (props: any) => {
 
 const StarsCanvas = () => {
     return (
-        <div className='absolute inset-0 z-[-1] h-auto w-full'>
+        <div className='absolute inset-0 z-[-1] h-auto w-full bg-dark-500'>
             <Canvas camera={{ position: [0, 0, 1] }}>
                 <Suspense fallback={null}>
                     <Stars />

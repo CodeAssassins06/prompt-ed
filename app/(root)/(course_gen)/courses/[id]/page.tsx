@@ -7,7 +7,7 @@ import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
-async function page({ searchParams, params }: URLProps) {
+async function Page({ searchParams, params }: URLProps) {
     const { userId } = auth();
     if (!userId) {
         redirect("/")
@@ -26,4 +26,4 @@ async function page({ searchParams, params }: URLProps) {
     )
 }
 
-export default page
+export default Page
