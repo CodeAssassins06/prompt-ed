@@ -13,6 +13,7 @@ interface Props {
 }
 
 const getRoadmap = async ({ topic }: Props) => {
+  console.log(topic);
   try {
     const searchTool = getSearchTool();
 
