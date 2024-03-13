@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
   const pathname = usePathname();
   return (
     <nav
-      className="background-light900_dark200 text-dark200_light800 fixed top-0 z-10 flex w-full items-center justify-between gap-2 px-8 shadow-sm"
+      className="background-light900_dark200 text-dark200_light800 fixed top-0 z-20 flex w-full items-center justify-between gap-2 px-8 shadow-sm"
     >
       <Link href="/">
         <div className="flex items-center gap-2">

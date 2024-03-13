@@ -23,7 +23,7 @@ export default function SideBar({ title, learningPath }: Props) {
   }, [activeId, router, searchParams]);
   return (
     <>
-      <div className="background-light800_dark400 sticky right-0 top-0 z-10 h-full shadow-lg" >
+      <div className="background-light800_dark400 sticky right-0 top-0 z-10 h-full overflow-y-scroll shadow-lg" >
         <div className="flex flex-col p-4">
 
           <h1 className="text-center text-xl font-bold capitalize ">{title}</h1>
