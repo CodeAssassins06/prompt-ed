@@ -13,7 +13,6 @@ interface Props {
 }
 
 const getRoadmap = async ({ topic }: Props) => {
-  console.log(topic);
   try {
     const searchTool = getSearchTool();
 
@@ -54,7 +53,6 @@ export const getTutorial = async ({ topic }: Props) => {
     console.log({
       res,
     });
-    fs.writeFileSync("res.json", JSON.stringify(res));
     return JSON.stringify(res);
   } catch (error) {
     console.log(error);

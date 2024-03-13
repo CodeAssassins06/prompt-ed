@@ -18,20 +18,19 @@ export default function Generate(params: any) {
             e.preventDefault();
             const form = e.target;
             const topic = form.topic.value;
-            console.log(topic);
             const results = await getRoadmap({ topic })
-            console.log("results", results);
+
             const roadMap = JSON.parse(results!);
-            console.log("roadMap", roadMap);
+
             const res = roadMap?.roadmap?.map((title: string) => {
                 return {
                     title,
                 };
             })
-            console.log("res", res);
+
             const newCourse = await createCourse({ title: roadMap.input, course: res, author: JSON.parse(mongoUserId) });
             const course = JSON.parse(newCourse);
-            console.log("course", course);
+
 
             router.push(`/courses/${course._id}?q=0`, { scroll: false })
         } catch (e: any) {
