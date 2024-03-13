@@ -28,7 +28,6 @@ const getRoadmap = async ({ topic }: Props) => {
     console.log({
       res,
     });
-    fs.writeFileSync("res.json", JSON.stringify(res));
     return JSON.stringify(res);
   } catch (error) {
     console.log(error);
