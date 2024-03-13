@@ -3,7 +3,7 @@ import { getUserById } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-export default async function Home() {
+const Page = async () => {
 
   const { userId } = auth();
   if (!userId) {
@@ -16,3 +16,5 @@ export default async function Home() {
     </>
   );
 }
+
+export default Page;
