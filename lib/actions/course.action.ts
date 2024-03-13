@@ -3,6 +3,7 @@
 import {
   CreateCourseParams,
   FindCourseByIdAndUpdateParams,
+  GetAllCoursesParams,
   GetCourseByIdParams,
 } from "./shared.types";
 import { connectToDatabase } from "../mongoose";
@@ -49,6 +50,18 @@ export async function findCourseByIdAndUpdate(
     );
     revalidatePath(`/courses/${courseId}`);
     return course;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+export async function getAllCourses(params: GetAllCoursesParams) {
+  try {
+    connectToDatabase();
+    const { userId } = params;
+    const courses = await Course.find({ author: userId });
+    revalidatePath(`/courses`);
+    return courses;
   } catch (error) {
     console.log(error);
     throw error;

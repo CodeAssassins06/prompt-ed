@@ -39,7 +39,7 @@ export default function Generate(params: any) {
         <>
             <div className="background-light700_dark300 text-dark300_light700 flex h-full flex-col items-center justify-center">
                 <form onSubmit={(e) => generateTutorial(e)} className="flex items-center justify-center gap-2">
-                    <Input type="text" name="topic" className="background-light800_dark400 text-dark200_light800 max-w-[300px] rounded-md border border-primary-500 shadow-sm duration-300  focus-visible:ring-transparent" />
+                    <Input type="text" name="topic" className="background-light800_dark400 text-dark200_light800 w-[300px] max-w-[500px] rounded-md border border-primary-500 shadow-sm duration-300  focus-visible:ring-transparent" />
                     <Button className=" bg-primary-500 hover:bg-primary-500/50" disabled={isGenerating}>
                         {
                             isGenerating ? (

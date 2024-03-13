@@ -36,3 +36,6 @@ export const removeKeysFromQuery = ({
     { skipNull: true }
   );
 };
+export const classnames = (...args: any[]) => {
+  return args.join(" ");
+};

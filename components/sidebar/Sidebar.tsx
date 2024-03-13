@@ -1,48 +1,44 @@
-/* eslint-disable no-unused-vars */
-import React from "react";
-import "../../public/assets/styles/Sidebar.scss";
-import { Button } from "@/components/ui/button";
-import { Mail, Home, Users, Star, Tag, User, HelpCircle, LogIn, ChevronRight, ChevronLeft } from "lucide-react";
-function SideNavbar() {
-    return (
-        <>
-            <div className="sticky top-[92px] flex shadow-sm" style={{ height: "calc(100vh - 92px)" }}>
-                <aside className=" flex w-64 flex-col  justify-between p-3 shadow-sm sm:p-4" style={{ backgroundColor: `var(--Header-color)` }}>
-                    <div className="flex flex-col  gap-2 overflow-y-auto ">
-                        <Button variant="blue" className="flex w-full justify-center  p-[24px] font-bold sm:justify-start">
-                            <Home className="mr-2 w-4" /><span className=" hidden sm:flex ">Home</span>
-                        </Button>
-                        <Button variant="ghost" className="flex w-full justify-center py-[24px] sm:justify-start" >
-                            <Users className="mr-2 w-4" /><span className=" hidden sm:flex">Community</span>
-                        </Button>
-                        <Button variant="ghost" className="flex w-full justify-center py-[24px] sm:justify-start">
-                            <Star className="mr-2 w-4" /><span className=" hidden sm:flex">Collections</span>
-                        </Button>
-                        <Button variant="ghost" className="flex w-full justify-center py-[24px] sm:justify-start" >
-                            <Tag className="mr-2 w-4" /><span className=" hidden sm:flex">Tags</span>
-                        </Button>
-                        <Button variant="ghost" className="flex w-full justify-center py-[24px] sm:justify-start">
-                            <User className="mr-2 w-4" /><span className=" hidden sm:flex">Profile</span>
-                        </Button>
-                        <Button variant="ghost" className="flex w-full justify-center py-[24px] sm:justify-start" >
-                            <HelpCircle className="mr-2 w-4" /><span className=" hidden sm:flex">Ask Questions</span>
-                        </Button>
-                    </div>
-                    <div className=" flex flex-col  gap-2 ">
-                        <Button variant="outline" className="flex w-full justify-center py-[24px]">
-                            <LogIn className="mr-2 w-4" />  <span className=" hidden sm:flex">Login with Email</span>
-                        </Button>
-                        <Button variant="blue" className=" flex w-full  justify-center py-[24px]" >
-                            <Mail className="mr-2 w-4" /> <span className=" hidden sm:flex"> Sign up </span>
-                        </Button>
-                    </div>
-                </aside>
-                {/* <div className=" flex ml-1 items-center justify-center" >
-                    <Button variant='ghost' className='p-2 rounded-full   ' > <ChevronRight /> </Button>
-                </div> */}
-            </div>
-        </>
-    );
-}
+"use client"
+import React, { useEffect, useState } from "react";
 
-export default SideNavbar;
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { Button } from "../ui/button";
+import { formUrlQuery } from "@/lib/utils";
+import { useRouter, useSearchParams } from "next/navigation";
+interface Props {
+  title: string;
+  learningPath: any[];
+}
+export default function SideBar({ title, learningPath }: Props) {
+  const [activeId, setActiveId] = useState<Number>(0);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const newUrl = formUrlQuery({
+      params: searchParams.toString(),
+      key: "q",
+      value: String(activeId),
+    });
+    router.push(newUrl, { scroll: false });
+  }, [activeId, router, searchParams]);
+  return (
+    <>
+      <div className="background-light800_dark400 sticky right-0 top-0 z-10 h-full shadow-lg" >
+        <div className="flex flex-col p-4">
+
+          <h1 className="text-center text-xl font-bold capitalize ">{title}</h1>
+          {learningPath.map((item, index) => (
+            <Button onClick={() => { setActiveId(index); }} key={index} className={`${activeId === index ? "bg-primary-500/80" : ""} m-2 flex w-full justify-between py-[24px] font-bold hover:bg-light-400/50 dark:hover:bg-dark-300 `}>
+              <div className="flex items-center">
+                <div className="text-dark300_light700 line-clamp-1 max-w-[300px] px-2 text-base font-semibold">
+                  {item.title}
+                </div>
+              </div>
+              <MdKeyboardArrowRight className="size-[24px] items-end" />
+            </Button>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}

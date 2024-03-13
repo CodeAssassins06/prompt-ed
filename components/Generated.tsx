@@ -3,7 +3,8 @@ import React from 'react'
 import ParseHtml from './ParseHtml';
 import { getTutorial } from '@/lib/actions/researchAgent';
 import { findCourseByIdAndUpdate } from '@/lib/actions/course.action';
-import KnowledgeTest from './knowledgeTest';
+import KnowledgeTest from './KnowledgeTest';
+import Landing from './codeEditor/Landing';
 
 async function Generated({ course, courseId, activeId }: any) {
     if (course.course[activeId].tutorial === undefined) {
@@ -16,7 +17,7 @@ async function Generated({ course, courseId, activeId }: any) {
 
     return (
         <>
-            <div className="flex w-full flex-col gap-5 p-5">
+            <div className="flex w-full flex-col gap-5 overflow-y-scroll px-8 py-4">
                 <section className="flex flex-col gap-2">
                     <h1 className="py-2 text-center text-[28px] font-bold capitalize">
                         {course.title}
@@ -65,6 +66,7 @@ async function Generated({ course, courseId, activeId }: any) {
                     <ParseHtml
                         data={`<pre class="language-${course.tutorial.exampleCode.code.languageName.toLowerCase()}"> <code>${formattedCode}</code></pre>`}
                     />
+                    <Landing codeInput={formattedCode} />
 
                     <p className="">{course.tutorial.exampleCode.afterCodeExplanation}</p>
                 </section>

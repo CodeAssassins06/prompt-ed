@@ -30,6 +30,9 @@ export interface FindCourseByIdAndUpdateParams {
   courseId: string;
   updatedData: Object;
 }
+export interface GetAllCoursesParams {
+  userId: string;
+}
 export interface URLProps {
   params: { id: string };
   searchParams: { [key: string]: string | undefined };

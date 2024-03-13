@@ -35,8 +35,8 @@ const Navbar: React.FC = () => {
             <Link href="/dashboard" className={`h3-bold ${pathname === "/dashboard" && "border-b-4 border-primary-500  bg-light-800 dark:bg-dark-300"} px-2 py-4 hover:bg-light-800 dark:hover:bg-dark-300`}>
               Dashboard
             </Link>
-            <Link href="/tutorials" className={`h3-bold ${pathname === "/tutorials" && "border-b-4 border-primary-500  bg-light-800 dark:bg-dark-300"} px-2 py-4 hover:bg-light-800 dark:hover:bg-dark-300`}>
-              Tutorials
+            <Link href="/courses" className={`h3-bold ${pathname === "/courses" && "border-b-4 border-primary-500  bg-light-800 dark:bg-dark-300"} px-2 py-4 hover:bg-light-800 dark:hover:bg-dark-300`}>
+              Courses
             </Link>
           </div>
         </SignedIn>

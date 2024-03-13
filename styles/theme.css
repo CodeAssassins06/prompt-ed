@@ -29,6 +29,9 @@
   .background-light800_dark300 {
     @apply bg-light-800 dark:bg-dark-300 !important;
   }
+  .background-primary100_dark400 {
+    @apply bg-primary-100 dark:bg-dark-400 !important;
+  }
   .text-dark100_light900 {
     @apply text-dark-100 dark:text-light-900 !important;
   }
@@ -41,8 +44,11 @@
   .text-dark300_light700 {
     @apply text-dark-300 dark:text-light-700;
   }
+  .text-dark300_light600 {
+    @apply text-dark-300 dark:text-light-700;
+  }
   .text-dark400_light700 {
-    @apply text-dark-400 dark:text-light-700;
+    @apply text-dark-400 dark:text-light-500;
   }
   .text-dark500_light700 {
     @apply text-dark-500 dark:text-light-700 !important;

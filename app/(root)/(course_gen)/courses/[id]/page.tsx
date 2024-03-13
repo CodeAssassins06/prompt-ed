@@ -1,5 +1,5 @@
 import Generated from '@/components/Generated';
-import RightSideBar from '@/components/RightSideBar';
+import SideBar from '@/components/sidebar/SideBar';
 import { getCourseById } from '@/lib/actions/course.action';
 import { URLProps } from '@/lib/actions/shared.types';
 import { getUserById } from '@/lib/actions/user.action';
@@ -17,9 +17,11 @@ async function page({ searchParams, params }: URLProps) {
     const course = res[0];
 
     return (
-        <div className='flex'>
+        <div className='background-light700_dark300 text-dark300_light700 flex h-screen pt-14'>
             <Generated course={course} activeId={searchParams.q!} courseId={params.id} />
-            <RightSideBar title={course.title} learningPath={course.course} />
+            <div className="relative">
+                <SideBar title={course.title} learningPath={course.course} />
+            </div>
         </div>
     )
 }
