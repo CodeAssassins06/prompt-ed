@@ -9,7 +9,7 @@ import EarthCanvas from "./canvas/Earth";
 import { styles } from "./styles/styles";
 
 const Contact = () => {
-  const formRef = useRef();
+  const formRef = useRef<any>();
   const [form, setForm] = useState({
     name: "",
     email: "",

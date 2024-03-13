@@ -44,6 +44,7 @@ const Landing = ({ codeInput }: any) => {
             console.log("ctrlPress", ctrlPress);
             handleCompile();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ctrlPress, enterPress]);
     const onChange = (action: any, data: any) => {
         switch (action) {
@@ -195,7 +196,7 @@ const Landing = ({ codeInput }: any) => {
                     />
                 </div>
 
-                <div className="right-container flex w-[30%] shrink-0 flex-col">
+                <div className="flex w-[30%] shrink-0 flex-col">
                     <OutputWindow outputDetails={outputDetails} />
                     <div className="flex flex-col items-end">
                         <CustomInput

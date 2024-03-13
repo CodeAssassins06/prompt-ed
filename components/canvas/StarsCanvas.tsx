@@ -5,7 +5,7 @@ import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
 
 const Stars = (props: any) => {
-    const ref = useRef();
+    const ref = useRef<any>();
     const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.2 }));
 
     useFrame((state: any, delta: any) => {

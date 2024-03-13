@@ -8,7 +8,7 @@ function CodeEditorWindow({ onChange, language, code, theme }: any) {
         onChange("code", value);
     };
     return (
-        <div className="overlay size-full overflow-hidden rounded-md shadow-2xl">
+        <div className=" size-full overflow-hidden rounded-md shadow-2xl">
             <Editor
                 height="85vh"
                 width={`100%`}
