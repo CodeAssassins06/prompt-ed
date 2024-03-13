@@ -27,10 +27,10 @@ const Navbar: React.FC = () => {
         </div>
       </Link>
       <div className="flex gap-4">
-        <Link href="/" className={`${pathname === "/" && "border-b-4 border-primary-500 bg-light-800 dark:bg-dark-300"} h3-bold px-2 py-4 hover:bg-light-800 dark:hover:bg-dark-300`}>
-          Home
-        </Link>
         <SignedIn>
+          <Link href="/" className={`${pathname === "/" && "border-b-4 border-primary-500 bg-light-800 dark:bg-dark-300"} h3-bold px-2 py-4 hover:bg-light-800 dark:hover:bg-dark-300`}>
+            Home
+          </Link>
           <div className="flex gap-4">
             <Link href="/dashboard" className={`h3-bold ${pathname === "/dashboard" && "border-b-4 border-primary-500  bg-light-800 dark:bg-dark-300"} px-2 py-4 hover:bg-light-800 dark:hover:bg-dark-300`}>
               Dashboard
@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
           </div>
         </SignedIn>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 px-2 py-4">
         <Theme />
         <SignedOut>
           <SignUpButton mode="modal">Register</SignUpButton>

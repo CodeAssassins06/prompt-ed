@@ -1,6 +1,5 @@
 
 import React from 'react'
-import ParseHtml from './ParseHtml';
 import { getTutorial } from '@/lib/actions/researchAgent';
 import { findCourseByIdAndUpdate } from '@/lib/actions/course.action';
 import KnowledgeTest from './KnowledgeTest';
@@ -63,9 +62,6 @@ async function Generated({ course, courseId, activeId }: any) {
                         <span className=" capitalize">Code Sample</span>
                     </h1>
                     <p className="">{course.tutorial.exampleCode.beforeCodeExplanation}</p>
-                    <ParseHtml
-                        data={`<pre class="language-${course.tutorial.exampleCode.code.languageName.toLowerCase()}"> <code>${formattedCode}</code></pre>`}
-                    />
                     <Landing codeInput={formattedCode} />
 
                     <p className="">{course.tutorial.exampleCode.afterCodeExplanation}</p>

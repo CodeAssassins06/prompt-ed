@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @import url("../styles/theme.css");
-@import url("../styles/prism.css");
 
 body {
   font-family: "Inter", sans-serif;
@@ -43,9 +42,17 @@ body {
   }
 
   .primary-gradient {
-    background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
+    background: #ff7000;
+    background: linear-gradient(-90deg, #ff7000 0%, rgba(255, 112, 0, 0) 100%);
+    background: -webkit-linear-gradient(
+      -90deg,
+      #ff7000 0%,
+      rgba(255, 112, 0, 0) 100%
+    );
   }
-
+  .shadow-primary {
+    @apply shadow-primary-500/50;
+  }
   .dark-gradient {
     background: linear-gradient(
       232deg,

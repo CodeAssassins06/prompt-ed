@@ -34,8 +34,8 @@ const Contact = () => {
 
     emailjs
       .send(
-        process.env.EMAILJS_SERVICE_ID,
-        process.env.EMAILJS_TEMPLATE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         {
           from_name: form.name,
           to_name: "ML_VoiLabs",
@@ -43,7 +43,7 @@ const Contact = () => {
           to_email: "voilabsml@gmail.com",
           message: form.message,
         },
-        process.env.EMAILJS_PUBLIC_KEY
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {
@@ -71,10 +71,10 @@ const Contact = () => {
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='bg-black-100 flex-[0.75] rounded-2xl p-8'
+        className='background-light700_dark300 flex-[0.75] rounded-2xl p-8'
       >
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+        <p className={`${styles.sectionSubText} text-dark400_light700`}>Get in touch</p>
+        <h3 className={`${styles.sectionHeadText} text-dark400_light700`}>Contact.</h3>
 
         <form
           ref={formRef}
@@ -82,42 +82,42 @@ const Contact = () => {
           className='mt-12 flex flex-col gap-8'
         >
           <label className='flex flex-col'>
-            <span className='mb-4 font-medium text-white'>Your Name</span>
+            <span className='text-dark400_light500 mb-4 font-medium'>Your Name</span>
             <input
               type='text'
               name='name'
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className='bg-tertiary rounded-lg border-none px-6 py-4 font-medium text-white outline-none placeholder:text-secondary'
+              className='text-dark300_light700 rounded-lg border-none bg-light-500/80  px-6 py-4 font-medium outline-none  placeholder:text-dark-500/50 dark:bg-dark-400 dark:placeholder:text-light-400'
             />
           </label>
           <label className='flex flex-col'>
-            <span className='mb-4 font-medium text-white'>Your email</span>
+            <span className='text-dark400_light500 mb-4 font-medium'>Your email</span>
             <input
               type='email'
               name='email'
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
-              className='bg-tertiary rounded-lg border-none px-6 py-4 font-medium text-white outline-none placeholder:text-secondary'
+              className='text-dark300_light700 rounded-lg border-none bg-light-500/80  px-6 py-4 font-medium outline-none  placeholder:text-dark-500/50 dark:bg-dark-400 dark:placeholder:text-light-400'
             />
           </label>
           <label className='flex flex-col'>
-            <span className='mb-4 font-medium text-white'>Your Message</span>
+            <span className='text-dark400_light500 mb-4 font-medium'>Your Message</span>
             <textarea
               rows={7}
               name='message'
               value={form.message}
               onChange={handleChange}
               placeholder='What you want to say?'
-              className='bg-tertiary rounded-lg border-none px-6 py-4 font-medium text-white outline-none placeholder:text-secondary'
+              className='text-dark300_light700 rounded-lg border-none bg-light-500/80  px-6 py-4 font-medium outline-none  placeholder:text-dark-500/50 dark:bg-dark-400 dark:placeholder:text-light-400'
             />
           </label>
 
           <button
             type='submit'
-            className='bg-tertiary w-fit rounded-xl px-8 py-3 font-bold text-white shadow-md shadow-primary outline-none'
+            className='shadow-primary ease w-fit rounded-xl bg-dark-400 px-8 py-3 font-bold text-light-700 shadow-sm outline-none duration-100 hover:bg-dark-200 dark:bg-light-500 dark:text-dark-300 dark:hover:bg-light-500/80'
           >
             {loading ? "Sending..." : "Send"}
           </button>
